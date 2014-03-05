@@ -1,25 +1,55 @@
 
-deck = {}
+def populate_deck
+  suits = ["clubs", "diamonds", "hearts", "spades"]
+  deck = {}
+  # this array will serve only to convert an integer to its word representation to avoid
+  # starting a symbol's name with a number
+  numbers = ["", "", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 
-suits = ["clubs", "diamonds", "hearts", "spades"]
-
-# populate deck hash with deck of cards and values
-suits.each do |suit|
-  deck["ace_#{suit}".to_sym] = 1
+  # populate deck hash with deck of cards and values
+  suits.each do |suit|
+    deck["ace_#{suit}".to_sym] = 1
   
-  (2..10).each do |num|
-    deck["#{num}_#{suit}".to_sym] = num
-  end
+    (2..10).each do |num|
+      deck["#{numbers[num]}_#{suit}".to_sym] = num
+    end
 
-  deck["jack_#{suit}".to_sym] = 10
-  deck["queen_#{suit}".to_sym] = 10
-  deck["king_#{suit}".to_sym] = 10
+    deck["jack_#{suit}".to_sym] = 10
+    deck["queen_#{suit}".to_sym] = 10
+    deck["king_#{suit}".to_sym] = 10
+  end
+  
+  return deck
 
 end
 
-dealer_cards = {}
-card_number = rand(1..deck.length)
-card = deck.select {|k, v| k = }
-dealer_cards[card] = 
+def deal_cards num, deck
+  cards = {}
+  keys = deck.keys 
+  num.times do
+    card_number = rand(0...deck.length)
+    cards ["#{keys[card_number]}".to_sym] = deck[keys[card_number]]
+  end
+  cards
+end
 
-# player_cards = {}
+# def get_value cards
+#   sum = 0
+#   cards.each for |card, value| 
+#     #unless card == :ace_clubs or card == :ace_diamonds or 
+#     # card == :ace_hearts or card == :ace_spades
+#     sum += value   
+#   end
+#   sum 
+# end
+
+
+deck = populate_deck
+ 
+dealer_cards = deal_cards 2, deck 
+puts dealer_cards
+player_cards = deal_cards 2, deck
+puts player_cards
+
+# dealer_value = get_value dealer_cards
+# puts dealer_value
