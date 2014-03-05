@@ -33,23 +33,28 @@ def deal_cards num, deck
   cards
 end
 
-# def get_value cards
-#   sum = 0
-#   cards.each for |card, value| 
-#     #unless card == :ace_clubs or card == :ace_diamonds or 
-#     # card == :ace_hearts or card == :ace_spades
-#     sum += value   
-#   end
-#   sum 
-# end
+def get_value cards
+  sum = 0
+  cards.each do |card, value| 
+    #unless card == :ace_clubs or card == :ace_diamonds or 
+    # card == :ace_hearts or card == :ace_spades
+    sum += value   
+  end
+  sum 
+end
 
+play = true
+while play
+  print "Hi, welcome to this blackjack game. What is your name?: "
+  name = gets.chomp
 
-deck = populate_deck
+  deck = populate_deck
  
-dealer_cards = deal_cards 2, deck 
-puts dealer_cards
-player_cards = deal_cards 2, deck
-puts player_cards
+  dealer_cards = deal_cards 2, deck 
+  player_cards = deal_cards 2, deck
+  
+  puts "The dealer has the following cards:"
+  dealer_cards.each {|card, value| }
 
-# dealer_value = get_value dealer_cards
-# puts dealer_value
+  dealer_value = get_value dealer_cards
+  puts dealer_value
