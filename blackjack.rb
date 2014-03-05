@@ -62,9 +62,16 @@ def get_value(cards, deck)
   sum
 end
 
+def display_cards(name, cards, deck)
+  puts "\n"
+  puts "#{name} has the following cards: "
+  cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
+  puts "#{name}'s card value: #{get_value(cards, deck)}"
+end
+
 # start game logic ------------------------->
 print "Hi, welcome to this blackjack game. What is your name? "
-name = gets.chomp
+player = gets.chomp
 
 play = true
 while play
@@ -76,13 +83,15 @@ while play
   
   puts "\n"
   puts "Dealer has the following cards:"
-  puts "A card facing down"
-  puts "#{dealer_cards[1]}"
+  puts "1) A card facing down"
+  puts "2) #{dealer_cards[1]}"
 
-  puts "\n"
-  puts "#{name} has the following cards: "
-  player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-  puts "#{name}'s cards value: #{get_value(player_cards, deck)}"
+  display_cards(name, player_cards, deck)
+  # puts "\n"
+  # puts "#{name} has the following cards: "
+  # player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
+  # puts "#{name}'s card value: #{get_value(player_cards, deck)}"
+  
   puts "\nWhat do you want to do?"
   puts "1) Hit"
   puts "2) Stay"
@@ -106,19 +115,19 @@ while play
     puts "\nDealer has the following cards: "
     dealer_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
     puts "Dealer's card value: #{dealer_value}"
-    puts "\n#{name} now has the folling cards: "
+    puts "\n#{player} now has the folling cards: "
     player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-    puts "#{name}'s cards value: #{player_value}"
+    puts "#{player}'s cards value: #{player_value}"
 
     if player_value == 21
-      puts "\n#{name} wins!"
+      puts "\n#{player} wins!"
     elsif player_value > 21
-      puts "\n#{name} looses"
+      puts "\n#{player} looses"
     elsif player_value < 21
       if player_value > dealer_value
-        puts "\n#{name} wins!"
+        puts "\n#{player} wins!"
       elsif dealer_value > player_value
-        puts "\n#{name} looses"
+        puts "\n#{player} looses"
       end
     end
   when "2"
@@ -128,16 +137,16 @@ while play
     puts "\nDealer has the following cards: "
     dealer_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
     puts "Dealer's card value: #{dealer_value}"
-    puts "\n#{name} now has the folling cards: "
+    puts "\n#{player} now has the folling cards: "
     player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-    puts "#{name}'s card value: #{player_value}"
+    puts "#{player}'s card value: #{player_value}"
 
     if player_value > 21
-      puts "#\n{name} looses"
+      puts "#\n{player} looses"
     elsif player_value >= dealer_value 
-      puts "\n#{name} wins!"
+      puts "\n#{player} wins!"
     else
-      puts "\n#{name} looses"
+      puts "\n#{player} looses"
     end
   end
 
