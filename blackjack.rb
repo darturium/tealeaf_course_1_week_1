@@ -1,4 +1,3 @@
-
 def populate_deck
   suits = ["clubs", "diamonds", "hearts", "spades"]
   deck = {}
@@ -30,9 +29,7 @@ def populate_deck
     deck["king_of_#{suit}".to_sym] = 10
 
   end
-  
   return deck
-
 end
 
 def deal_cards(num, deck)
@@ -44,7 +41,6 @@ def deal_cards(num, deck)
   end
   return cards
 end
-
 
 def get_value(cards, deck)
   sum = 0
@@ -76,6 +72,7 @@ player = gets.chomp
 play = true
 while play
  
+  puts "\n==================== START GAME ===================="
   deck = populate_deck
  
   dealer_cards = deal_cards(2, deck) 
@@ -86,16 +83,12 @@ while play
   puts "1) A card facing down"
   puts "2) #{dealer_cards[1]}"
 
-  display_cards(name, player_cards, deck)
-  # puts "\n"
-  # puts "#{name} has the following cards: "
-  # player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-  # puts "#{name}'s card value: #{get_value(player_cards, deck)}"
+  display_cards(player, player_cards, deck)
   
   puts "\nWhat do you want to do?"
   puts "1) Hit"
   puts "2) Stay"
-  print "Enter your choice: "
+  print "Enter your choice (1 or 2): "
 
   action = gets.chomp
 
@@ -104,7 +97,6 @@ while play
     action = gets.chomp
   end
 
-
   case action
   when "1"
     deal_cards(1, deck).each {|card| player_cards << card }
@@ -112,12 +104,8 @@ while play
     dealer_value = get_value(dealer_cards, deck)
     player_value = get_value(player_cards, deck)
 
-    puts "\nDealer has the following cards: "
-    dealer_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-    puts "Dealer's card value: #{dealer_value}"
-    puts "\n#{player} now has the folling cards: "
-    player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-    puts "#{player}'s cards value: #{player_value}"
+    display_cards("Dealer", dealer_cards, deck)
+    display_cards(player, player_cards, deck)
 
     if player_value == 21
       puts "\n#{player} wins!"
@@ -134,12 +122,8 @@ while play
     dealer_value = get_value(dealer_cards, deck)
     player_value = get_value(player_cards, deck)
 
-    puts "\nDealer has the following cards: "
-    dealer_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-    puts "Dealer's card value: #{dealer_value}"
-    puts "\n#{player} now has the folling cards: "
-    player_cards.each_with_index {|card, index| puts "#{index + 1}) #{card}"}
-    puts "#{player}'s card value: #{player_value}"
+    display_cards("Dealer", dealer_cards, deck)
+    display_cards(player, player_cards, deck)
 
     if player_value > 21
       puts "#\n{player} looses"
