@@ -1,33 +1,23 @@
 def populate_deck
   suits = ["clubs", "diamonds", "hearts", "spades"]
   deck = {}
-  # this array will serve only to convert an integer to its word representation to avoid
-  # starting a symbol's name with a number
-  numbers = ["", "", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+  
+  numbers = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 
   # populate deck hash with deck of cards and values
   suits.each do |suit|
 
     deck["ace_of_#{suit}".to_sym] = 11
   
-    (2..10).each do |num|
-      deck["#{numbers[num]}_of_#{suit}".to_sym] = num
+    # (2..10).each do |num|
+    numbers.each do |num|
+      deck["#{num}_of_#{suit}".to_sym] = numbers.find_index(num) + 2
     end
 
     deck["jack_of_#{suit}".to_sym] = 10
     deck["queen_of_#{suit}".to_sym] = 10
     deck["king_of_#{suit}".to_sym] = 10
-
-    deck["ace_#{suit}".to_sym] = 1
   
-    (2..10).each do |num|
-      deck["#{numbers[num]}_of_#{suit}".to_sym] = num
-    end
-
-    deck["jack_of_#{suit}".to_sym] = 10
-    deck["queen_of_#{suit}".to_sym] = 10
-    deck["king_of_#{suit}".to_sym] = 10
-
   end
   return deck
 end
